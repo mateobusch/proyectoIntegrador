@@ -7,10 +7,14 @@ import Footer from "./components/Footer/Footer"
 function App() {
   return (
     <React.Fragment>
+      <h1>UdeSA Movies</h1>
+      <Header />
 
       <Switch>
-        <Route path= "/" exact = {true} component = {Header}/>
+        <Route path= "/" exact = {true}/>
       </Switch>
+
+      <Footer />
     
 
     </React.Fragment>

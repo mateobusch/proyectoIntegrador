@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Menu from "../Menu/Menu"
 import {Link} from "react-router-dom"
+import "./styles.css"
 
  class Header extends Component {
     constructor(props){
@@ -21,29 +22,29 @@ import {Link} from "react-router-dom"
     
     return (
          <nav>
-            <ul class="nav nav-tabs my-4">
-                <li class="nav-item">
+            <ul className="nav nav-tabs my-4">
+                <li className   ="nav-item">
                     <Link to= "/home">Home</Link>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                     <Link to= "/peliculas">Peliculas</Link>
                 </li>
-                <li class="nav-item">
-                    <Link to= "/series">Series</Link>
+                <li className="nav-item">
+                    <Link className="nav-link" to= "/series">Series</Link>
                 </li>
                 {this.state.haySesion ?
-                <li class="nav-item">
-                    <Link to= "/favoritos">Favoritos</Link>
+                <li className="nav-item">
+                    <Link className="nav-link" to= "/favoritos">Favoritos</Link>
                 </li>
                 : null}
                 {!this.state.haySesion ? 
-                <li class="nav-item ml-auto">
-                    <Link to= "/registro">Registro</Link>
+                <li className="nav-item ml-auto">
+                    <Link className="nav-link" to= "/registro">Registro</Link>
                 </li>
                 : null}
                 {!this.state.haySesion ?
-                <li class="nav-item">
-                   <Link to= "/login">Login</Link>
+                <li className="nav-item">
+                   <Link className="nav-link" to= "/login">Login</Link>
                 </li>
                 : null}
             </ul>
