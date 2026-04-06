@@ -25,12 +25,12 @@ class Buscador extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={(event)=> this.onSubmit(event)}>
+                <form class="search-form" onSubmit={(event)=> this.onSubmit(event)}>
                     <input onChange={(event)=> this.guardarBusqueda(event)} value={this.state.search}/>
-                    <button type="submit">Buscar</button>
+                    <button type="submit" class="btn btn-success btn-sm">Buscar</button>
                 </form>
             </div>
         )
     }
 }
-export default Buscador;
+export default withRouter(Buscador);
