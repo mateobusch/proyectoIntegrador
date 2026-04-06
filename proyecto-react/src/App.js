@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
+import Home from './Screens/Home/Home';
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path= "/" exact = {true}/>
+        <Route path= "/" exact = {true} component= {Home}/>
       </Switch>
 
       <Footer />
@@ -20,5 +21,4 @@ function App() {
     </React.Fragment>
   );
 }
-
 export default App;
