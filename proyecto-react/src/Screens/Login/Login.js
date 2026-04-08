@@ -25,7 +25,7 @@ class Login extends Component {
             this.setState({ error: "Todos los campos son obligatorios" });
         } else {
             // Guardamos la cookie como hacés en el Header
-            document.cookie = "session=" + this.state.email + "; max-age=3600; path=/";
+            localStorage.setItem("usuario", this.state.email);
             
             // Redirigimos al home usando las props de React Router
             this.props.history.push('/');

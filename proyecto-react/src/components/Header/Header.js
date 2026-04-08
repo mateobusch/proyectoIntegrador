@@ -11,8 +11,8 @@ import "./styles.css"
         }
     }
     componentDidMount(){
-        let cookies = document.cookie
-        if (cookies.includes("session=")){
+        let usuarioLogeado = localStorage.getItem("usuario");
+        if (usuarioLogeado !== null){
             this.setState({
                 haySesion: true
             })
