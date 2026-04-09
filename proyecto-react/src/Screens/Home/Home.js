@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import Buscador from '../../components/Buscador/Buscador'
 
 class Home extends Component {
@@ -40,24 +41,7 @@ class Home extends Component {
         <Buscador/>
 
         <h2 className= "alert alert-primary"> Popular movies this week <Link to = "/peliculas/populares"> Ver todas</Link></h2>
-        <section className="row cards" id="movies">
-    {this.state.populares.length > 0 ?
-        this.state.populares.map((pelicula, index) => {
-            if(index < 4){
-                return (
-                    <MovieCard
-                        key={pelicula.id + index}
-                        datos={pelicula}
-                        tipo="movie"
-                        clase="single-card-movie"
-                    />
-                )
-            } else {
-                return null
-            }
-        })
-    : <p>Cargando películas populares...</p>}
-</section>
+        
 
         
       </div>
