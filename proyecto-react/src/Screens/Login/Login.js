@@ -10,55 +10,55 @@ class Login extends Component {
         };
     }
 
-    // Función para capturar lo que el usuario escribe
-    controlarCambios(evento) {
+    
+    capturarCambios(evento) {
         this.setState({
             [evento.target.name]: evento.target.value
         });
     }
 
-    // Función que se ejecuta al darle al botón "Iniciar sesión"
+    
     procesarLogin(evento) {
-        evento.preventDefault(); // Evita que la página se refresque
+        evento.preventDefault();
 
         if (this.state.email === "" || this.state.password === "") {
             this.setState({ error: "Todos los campos son obligatorios" });
         } else {
-            // Guardamos la cookie como hacés en el Header
+            
             localStorage.setItem("usuario", this.state.email);
             
-            // Redirigimos al home usando las props de React Router
+            
             this.props.history.push('/');
             
-            // Refrescamos para que el Header lea la nueva cookie
+            
             window.location.reload();
         }
     }
 
     render() {
         return (
-            <div className="container mt-5">
+            <div className="container login">
                 <h2 className="alert alert-primary">Iniciar sesión</h2>
                 <div className="row justify-content-center">
                     <div className="col-md-6">
                         <form onSubmit={(e) => this.procesarLogin(e)}>
                             <div className="form-group">
-                                <label>Email</label>
+                                <label for="email">Email</label>
                                 <input 
                                     type="email" 
                                     name="email"
                                     className="form-control" 
-                                    onChange={(e) => this.controlarCambios(e)}
+                                    onChange={(e) => this.capturarCambios(e)}
                                     value={this.state.email}
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Contraseña</label>
+                                <label for="password">Contraseña</label>
                                 <input 
                                     type="password" 
                                     name="password"
                                     className="form-control" 
-                                    onChange={(e) => this.controlarCambios(e)}
+                                    onChange={(e) => this.capturarCambios(e)}
                                     value={this.state.password}
                                 />
                             </div>
