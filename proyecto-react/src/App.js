@@ -4,6 +4,7 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Home from './Screens/Home/Home';
 import Login from './Screens/Login/Login';
+import Peliculas from './Screens/Peliculas/Peliculas';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route path= "/Home" exact = {true} component= {Home}/>
         <Route path = "/Login" component = {Login}/>
+        <Route path = "/Peliculas" component = {Peliculas}/>
         <Route path= "/" exact = {true}/>
       </Switch>
 
