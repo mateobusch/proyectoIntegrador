@@ -16,12 +16,12 @@ class Peliculas extends Component {
     }
 
     traerPeliculas() {
-        fetch("https://api.themoviedb.org/3/movie/popular?api_key=4606c83ccea5f9b56977aeac833b6148&page=${this.state.proximaPagina}")
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=4606c83ccea5f9b56977aeac833b6148&page=${this.state.proximaPagina}`)
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    peliculas: this.state.peliculas(data.results),
-                    peliculasFiltradas: this.state.peliculas(data.results),
+                    peliculas: data.results,
+                    peliculasFiltradas: data.results,
                     proximaPagina: this.state.proximaPagina + 1
                 });
             })
@@ -29,8 +29,8 @@ class Peliculas extends Component {
     }
     render() {
         return (
-           
-        );
+           <p>Peliculas</p>
+        )
     }
 }
 
