@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
+import Cookies from "universal-cookie"
+
+const cookies = new Cookies()
 
 class MovieCard extends Component {
     constructor(props){
@@ -12,12 +15,25 @@ class MovieCard extends Component {
     }
 
     componentDidMount(){
-        let usuarioLogeado = localStorage.getItem("usuario")
+        let usuarioLogeado = cookies.get("usuario")
+        let favoritosGuardados = cookies.get("favoritos")
 
         if (usuarioLogeado != null){
             this.setState({
                 haySesion: true
             })
+        }
+
+        if (favoritosGuardados != null){
+            let favoritos = favoritosGuardados
+
+            for(let i = 0; i < favoritos.length; i++){
+                if(favoritos[i].id === this.props.datos.id){
+                    this.setState({
+                        esFavorito: true
+                    })
+                }
+            }
         }
     }
 
@@ -28,11 +44,11 @@ class MovieCard extends Component {
     }
 
     agregarFavoritos(){
-        let favoritosGuardados = localStorage.getItem("favoritos")
+        let favoritosGuardados = cookies.get("favoritos")
         let favoritos = []
 
         if (favoritosGuardados != null){
-            favoritos = JSON.parse(favoritosGuardados)
+            favoritos = favoritosGuardados
         }
 
         if (this.state.esFavorito){
@@ -44,7 +60,7 @@ class MovieCard extends Component {
                 }
             }
 
-            localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos))
+            cookies.set("favoritos", nuevosFavoritos, {path : "/"})
 
             this.setState({
                 esFavorito: false
@@ -58,7 +74,7 @@ class MovieCard extends Component {
             }
 
             favoritos.push(favoritoNuevo)
-            localStorage.setItem("favoritos", JSON.stringify(favoritos))
+            cookies.set("favoritos", favoritos, {path : "/"})
 
             this.setState({
                 esFavorito: true
