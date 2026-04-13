@@ -7,6 +7,7 @@ import Login from './Screens/Login/Login';
 import Peliculas from './Screens/Peliculas/Peliculas';
 import Detalle from './Screens/Detalle/Detalle';
 import NotFound from './Screens/NotFound/NotFound'
+import "./styles.css"
 
 
 function App() {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Cookies from "universal-cookie"
 
+const cookies = new Cookies()
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +27,8 @@ class Login extends Component {
             this.setState({ error: "Todos los campos son obligatorios" });
         } else {
             
-            localStorage.setItem("usuario", this.state.email);
+           cookies.set("usuario", this.state.email, { path: "/" });
+           
             
             
             this.props.history.push('/');
