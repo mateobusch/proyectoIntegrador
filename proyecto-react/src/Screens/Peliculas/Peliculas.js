@@ -1,5 +1,6 @@
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import MovieCard from '../../components/MovieCard/MovieCard'
 
 class Peliculas extends Component {
@@ -31,7 +32,29 @@ class Peliculas extends Component {
     }
     render() {
         return (
-           <p>Peliculas</p>
+            <div>
+           <h2>Peliculas</h2>
+          
+           <section className= "row cards" id= "movies">
+          {this.state.traerPeliculas.map((pelicula, index) => {
+            if (index<4){
+              return(
+                <MovieCard
+                  key={pelicula.id}
+                  datos={pelicula}
+                  clase= "single-card-movie"
+                  />
+              )
+            }
+            else{
+              return null
+            }
+          }
+        )}
+
+        </section>
+        </div>
+
         )
     }
 }
