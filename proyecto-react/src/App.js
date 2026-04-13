@@ -6,6 +6,7 @@ import Home from './Screens/Home/Home';
 import Login from './Screens/Login/Login';
 import Peliculas from './Screens/Peliculas/Peliculas';
 import NotFound from './Screens/NotFound/NotFound'
+import "./styles.css"
 
 
 function App() {
