@@ -5,6 +5,8 @@ import Footer from "./components/Footer/Footer"
 import Home from './Screens/Home/Home';
 import Login from './Screens/Login/Login';
 import Peliculas from './Screens/Peliculas/Peliculas';
+import NotFound from './Screens/NotFound/NotFound'
+import "./styles.css"
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Route path = "/Login" component = {Login}/>
         <Route path = "/Peliculas" component = {Peliculas}/>
         <Route path= "/" exact = {true}/>
+        <Route path = "" component = {NotFound}/>
       </Switch>
 
       <Footer />

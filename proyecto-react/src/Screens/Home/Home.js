@@ -14,7 +14,7 @@ class Home extends Component {
     }
     componentDidMount(){
         let urlPopulares ="https://api.themoviedb.org/3/movie/popular?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES"
-        let urlEnCartel= "https://api.themoviedb.org/3/movie/now_playing?api_key=4606c83ccea5f9b56977aeac833b6148Y&language=es-ES"
+        let urlEnCartel= "https://api.themoviedb.org/3/movie/now_playing?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES"
 
         fetch(urlPopulares)
           .then((response) => response.json())
