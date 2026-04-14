@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MovieCard from '../../components/MovieCard/MovieCard'
+import Loader from '../../components/Loader/Loader';
 
 class Peliculas extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class Peliculas extends Component {
             peliculasFiltradas: [],
             proximaPagina: 1,
             valorFiltro: ""
+            cargando: true
         };
     }
 
@@ -18,6 +20,9 @@ class Peliculas extends Component {
     }
 
     traerPeliculas() {
+        this.setState({
+            cargando: true
+        })
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=4606c83ccea5f9b56977aeac833b6148&page=${this.state.proximaPagina}`)
             .then(response => response.json())
             .then(data => {
@@ -25,6 +30,7 @@ class Peliculas extends Component {
                     peliculas: this.state.peliculas.concat(data.results),
                     peliculasFiltradas: this.state.peliculasFiltradas.concat(data.results),
                     proximaPagina: this.state.proximaPagina + 1
+                    cargando: false
                 });
             })
             .catch(error => console.log(error));
@@ -46,13 +52,8 @@ class Peliculas extends Component {
            onChange={(event) => this.filtrarPeliculas(event.target.value)}
            ></input>
            <section className= "row cards" id= "movies">
-            {this.state.peliculasFiltradas.map((pelicula, index) => 
-                <MovieCard
-                  key={pelicula.id}
-                  datos={pelicula}
-                  clase= "single-card-movie"
-                  />
-              )
+            {this.state.cargando ? <Loader/> 
+            
             }
 
         </section>

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import Buscador from '../../components/Buscador/Buscador'
 import MovieCard from '../../components/MovieCard/MovieCard'
+import Loader from '../../components/Loader/Loader';
 
 class Home extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state= {
             populares: [],
             enCartel: [],
@@ -13,6 +14,9 @@ class Home extends Component {
         }
     }
     componentDidMount(){
+      this.setState({
+            cargando: true
+        })
         let urlPopulares ="https://api.themoviedb.org/3/movie/popular?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES"
         let urlEnCartel= "https://api.themoviedb.org/3/movie/now_playing?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES"
 
@@ -21,7 +25,6 @@ class Home extends Component {
           .then((data) =>{
             this.setState({
                 populares: data.results,
-                cargando: false
             })
         })
           .catch((error)=> console.log(error))
@@ -39,6 +42,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        {this.state.cargando ? <Loader/>
+        :
+        <div>
         <Buscador/>
 
         <h2 className= "alert alert-primary"> Popular movies this week <Link to = "/peliculas/populares"> Ver todas</Link></h2>
@@ -64,6 +70,8 @@ class Home extends Component {
         
 
         
+      </div>
+        }
       </div>
     )
   }
