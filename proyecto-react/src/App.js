@@ -3,11 +3,13 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Home from './Screens/Home/Home';
+import CrearCuenta from './Screens/CrearCuenta/CrearCuenta';
 import Login from './Screens/Login/Login';
 import Peliculas from './Screens/Peliculas/Peliculas';
 import Detalle from './Screens/Detalle/Detalle';
 import NotFound from './Screens/NotFound/NotFound'
 import "./styles.css"
+
 
 
 function App() {
@@ -17,7 +19,8 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path= "/Home" exact = {true} component= {Home}/>
+        <Route path = "/Home" exact = {true} component= {Home}/>
+        <Route path = "/CrearCuenta" component = {CrearCuenta}/>
         <Route path = "/Login" component = {Login}/>
         <Route path = "/Peliculas" component = {Peliculas}/>
         <Route path = "/" exact = {true}/>

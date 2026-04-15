@@ -52,9 +52,9 @@ class Peliculas extends Component {
            onChange={(event) => this.filtrarPeliculas(event.target.value)}
            ></input>
            <section className= "row cards" id= "movies">
-            {this.state.cargando ? <Loader/> 
+            {this.state.cargando} ? <Loader/> 
             
-            }
+            
 
         </section>
         <button onClick={() => this.traerPeliculas()}>
