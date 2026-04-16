@@ -10,7 +10,7 @@ class Peliculas extends Component {
             peliculas: [],
             peliculasFiltradas: [],
             proximaPagina: 1,
-            valorFiltro: ""
+            valorFiltro: "",
             cargando: true
         };
     }
@@ -29,7 +29,7 @@ class Peliculas extends Component {
                 this.setState({
                     peliculas: this.state.peliculas.concat(data.results),
                     peliculasFiltradas: this.state.peliculasFiltradas.concat(data.results),
-                    proximaPagina: this.state.proximaPagina + 1
+                    proximaPagina: this.state.proximaPagina + 1,
                     cargando: false
                 });
             })
@@ -51,12 +51,18 @@ class Peliculas extends Component {
            placeholder="Pelicula"
            onChange={(event) => this.filtrarPeliculas(event.target.value)}
            ></input>
-           <section className= "row cards" id= "movies">
-            {this.state.cargando ? <Loader/> 
-            
+           {this.state.cargando ? <Loader/>
+           : <section className= "row cards" id= "movies">
+            {this.state.peliculasFiltradas.map((pelicula, index) => 
+                <MovieCard
+                  key={pelicula.id}
+                  datos={pelicula}
+                  clase= "single-card-movie"
+                  />
+              )
             }
-
         </section>
+           }
         <button onClick={() => this.traerPeliculas()}>
             Cargar más
         </button>
