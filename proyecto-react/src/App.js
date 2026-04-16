@@ -19,12 +19,12 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path = "/Home" exact = {true} component= {Home}/>
-        <Route path = "/CrearCuenta" component = {CrearCuenta}/>
-        <Route path = "/Login" component = {Login}/>
-        <Route path = "/Peliculas" component = {Peliculas}/>
+        <Route path = "/home" exact = {true} component= {Home}/>
+        <Route path = "/registro" component = {CrearCuenta}/>
+        <Route path = "/login" component = {Login}/>
+        <Route path = "/peliculas" component = {Peliculas}/>
         <Route path = "/" exact = {true}/>
-        <Route path = "/Detalle/:id" component = {Detalle} />
+        <Route path = "/detalle/:id" component = {Detalle} />
         <Route path = "" component = {NotFound}/>
       </Switch>
 
