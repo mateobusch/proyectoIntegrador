@@ -2,6 +2,9 @@
     import Menu from "../Menu/Menu"
     import {Link} from "react-router-dom"
     import "./styles.css"
+    import Cookies from "universal-cookie"
+    
+    const cookies = new Cookies()
 
     class Header extends Component {
         constructor(props){
@@ -11,12 +14,23 @@
             }
         }
         componentDidMount(){
-            let usuarioLogeado = localStorage.getItem("usuario");
-            if (usuarioLogeado !== null){
+            let usuarioLogeado = cookies.get("usuario");
+
+            if (usuarioLogeado){
                 this.setState({
                     haySesion: true
                 })
             }
+        }
+
+        cerrarSesion(){
+            cookies.remove("usuario", {path : "/"})
+            
+            this.setState({
+                haySesion: false
+            })
+            
+            window.location.reload()
         }
         render() {
         
@@ -46,6 +60,14 @@
                     {!this.state.haySesion ?
                     <li className="nav-item">
                     <Link className="nav-link" to= "/login">Login</Link>
+                    </li>
+                    : null}
+
+                    {this.state.haySesion ?
+                        <li className="nav-item ml-auto">
+                            <button className= "nav-link logout" onClick={() => this.cerrarSesion()}>
+                                Cerrar Sesion
+                            </button>
                     </li>
                     : null}
                 </ul>

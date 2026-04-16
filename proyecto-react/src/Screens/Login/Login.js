@@ -25,16 +25,40 @@ class Login extends Component {
 
         if (this.state.email === "" || this.state.password === "") {
             this.setState({ error: "Todos los campos son obligatorios" });
+            return
+        }
+
+        let usuariosGuardados = localStorage.getItem("usuarios")
+        let listaUsuarios = []
+
+        if (usuariosGuardados !== null){
+            listaUsuarios = JSON.parse(usuariosGuardados)
+        }
+
+        let usuarioEncontrado = null
+
+        for (let i = 0; i < listaUsuarios.length; i++){
+            if(
+                listaUsuarios[i].email === this.state.email &&
+                listaUsuarios[i].password === this.state.password
+            ){
+                usuarioEncontrado = listaUsuarios[i]
+            }
+
+        }
+        if (usuarioEncontrado !== null){
+            cookies.set("usuario", usuarioEncontrado.email , {path: "/"})
+
+            this.setState({
+                error: ""
+            })
+            this.props.history.push("/home")
+            window.location.reload()
+            
         } else {
-            
-           cookies.set("usuario", this.state.email, { path: "/" });
-           
-            
-            
-            this.props.history.push('/');
-            
-            
-            window.location.reload();
+            this.setState({
+                error: "Correo o contraseña incorrecta"
+            })
         }
     }
 
