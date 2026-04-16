@@ -37,7 +37,7 @@ class Peliculas extends Component {
     }
 
     filtrarPeliculas(valor) {
-        const peliculasFilter = this.state.peliculas.filter((e) => e.title.toLowerCase().includes(valor.toLowerCase()) ) 
+        const peliculasFilter = this.state.peliculas.filter((elm) => elm.title.toLowerCase().includes(valor.toLowerCase()) ) 
         this.setState({
             peliculasFiltradas: peliculasFilter,
             valorFiltro: valor
@@ -51,21 +51,18 @@ class Peliculas extends Component {
            placeholder="Pelicula"
            onChange={(event) => this.filtrarPeliculas(event.target.value)}
            ></input>
-           <section className= "row cards" id= "movies">
-            {this.state.cargando ? (
-                        <Loader />
-                    ) : (
-                        this.state.peliculasFiltradas.map((pelicula) => (
-                            <MovieCard
-                                key={pelicula.id}
-                                datos={pelicula}
-                            />
-                        ))
-                    )}
-            
-            
-
+           {this.state.cargando ? <Loader/>
+           : <section className= "row cards" id= "movies">
+            {this.state.peliculasFiltradas.map((pelicula, index) => 
+                <MovieCard
+                  key={pelicula.id}
+                  datos={pelicula}
+                  clase= "single-card-movie"
+                  />
+              )
+            }
         </section>
+           }
         <button onClick={() => this.traerPeliculas()}>
             Cargar más
         </button>
