@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import MovieCard from '../../components/MovieCard/MovieCard'
+import SerieCard from '../../components/SerieCard/SerieCard';
 import Loader from '../../components/Loader/Loader';
 
 class Series extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Series: [],
+            series: [],
             seriesFiltradas: [],
             proximaPagina: 1,
             valorFiltro: "",
@@ -37,7 +37,7 @@ class Series extends Component {
     }
 
     filtrarSeries(valor) {
-        const seriesFilter = this.state.series.filter((e) => e.title.toLowerCase().includes(valor.toLowerCase()) ) 
+        const seriesFilter = this.state.series.filter((e) => e.name.toLowerCase().includes(valor.toLowerCase()) ) 
         this.setState({
             seriesFiltradas: seriesFilter,
             valorFiltro: valor
@@ -55,10 +55,11 @@ class Series extends Component {
             {this.state.cargando ? (
                         <Loader />
                     ) : (
-                        this.state.peliculasFiltradas.map((serie) => (
-                            <MovieCard
-                                key={serie.id}
-                                datos={serie}
+                        this.state.seriesFiltradas.map((serie) => (
+                            <SerieCard
+                                key = {serie.id}
+                                datos = {serie}
+                                clase = "single-card-movie"
                             />
                         ))
                     )}
