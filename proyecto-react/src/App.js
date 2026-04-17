@@ -9,6 +9,7 @@ import Peliculas from './Screens/Peliculas/Peliculas';
 import Series from './Screens/Series/Series';
 import Detalle from './Screens/Detalle/Detalle';
 import NotFound from './Screens/NotFound/NotFound'
+import Favoritos from './Screens/Favoritos/Favoritos';
 import "./styles.css"
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path = "/registro" component = {CrearCuenta}/>
         <Route path = "/login" component = {Login}/>
         <Route path = "/peliculas" component = {Peliculas}/>
+        <Route path="/favoritos" component={Favoritos} />
         <Route path = "/series" component = {Series}/>
         <Route path = "/" exact = {true}/>
         <Route path = "/detalle/:id" component = {Detalle} />
