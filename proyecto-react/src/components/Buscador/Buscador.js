@@ -8,26 +8,23 @@ class Buscador extends Component {
             search: ""
         }
     }
-
     onSubmit(event) {
         event.preventDefault()
-        console.log("props de buscador", this.props)
-        this.props.history.push("/busqueda/" + this.state.search)
+        if (this.state.search !== "") {
+            this.props.history.push("/busqueda/" + this.state.search)
+        }
     }
-
     guardarBusqueda(event) {
         this.setState(
-            {search: event.target.value},
-        () => console.log("log desde el setState extendido: ", this.state.search))
-        console.log("El valor en estado es: ", this.state.search)
+            {search: event.target.value}
+        )
     }
-
     render() {
         return (
             <div>
-                <form class="search-form" onSubmit={(event)=> this.onSubmit(event)}>
+                <form className="search-form" onSubmit={(event)=> this.onSubmit(event)}>
                     <input onChange={(event)=> this.guardarBusqueda(event)} value={this.state.search}/>
-                    <button type="submit" class="btn btn-success btn-sm">Buscar</button>
+                    <button type="submit" className="btn btn-success btn-sm">Buscar</button>
                 </form>
             </div>
         )
