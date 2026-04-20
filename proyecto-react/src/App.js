@@ -21,13 +21,12 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path = "/home" exact = {true} component= {Home}/>
+        <Route path = "/" exact = {true} component= {Home}/>
         <Route path = "/registro" component = {CrearCuenta}/>
         <Route path = "/login" component = {Login}/>
         <Route path = "/peliculas" component = {Peliculas}/>
         <Route path="/favoritos" component={Favoritos} />
-        <Route path = "/series" component = {Series}/>
-        <Route path = "/" exact = {true}/>
+        <Route path = "/series" component = {Series}/> 
         <Route path = "/detalle/:id" component = {Detalle} />
         <Route path = "" component = {NotFound}/>
       </Switch>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Cookies from 'universal-cookie';
 import MovieCard from '../../components/MovieCard/MovieCard';
+import SerieCard from '../../components/SerieCard/SerieCard';
 
 const cookies = new Cookies()
 class Favoritos extends Component {
@@ -21,14 +22,20 @@ class Favoritos extends Component {
                 haySesion: true
             })
         }
-        if (favoritos !== null) {
-            let peliculas = favoritos.filter(fav => fav.title !== "")
-            let series = favoritos.filter(fav => fav.title === "")
+        if (favoritos) {
+            let peliculas = favoritos.filter(fav => fav.queEs === "pelicula")
+            let series = favoritos.filter(fav => fav.queEs === "serie")
             this.setState({
                 peliculasFavoritas: peliculas,
                 seriesFavoritas: series
             })
         }
+        else {
+            this.setState({
+            peliculasFavoritas: [],
+            seriesFavoritas: []
+    })
+}
     }
     render() {
         if (this.state.haySesion === false) {
@@ -39,7 +46,7 @@ class Favoritos extends Component {
         return (
             <div className="container">
                 <h2 className="alert alert-primary">Peliculas favoritas</h2>
-                {this.state.peliculasFavoritas.length > 0 ?
+                {this.state.peliculasFavoritas.length === 0 ?
                 <p>No hay peliculas favoritas</p>
                 :
                 <section className="row cards">
@@ -55,12 +62,12 @@ class Favoritos extends Component {
 
             <h2 className="alert alert-warning">Series favoritas</h2>
 
-            {this.state.seriesFavoritas.length > 0 ?
+            {this.state.seriesFavoritas.length === 0 ?
                 <p>No hay series favoritas</p>
                 :
                 <section className="row cards">
                     {this.state.seriesFavoritas.map(serie => (
-                        <MovieCard
+                        <SerieCard
                             key={serie.id}
                             datos={serie}
                             clase="single-card-movie"

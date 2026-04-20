@@ -70,7 +70,8 @@ class SerieCard extends Component {
                 id: this.props.datos.id,
                 title: this.props.datos.name,
                 poster_path: this.props.datos.poster_path,
-                overview: this.props.datos.overview
+                overview: this.props.datos.overview,
+                queEs: "serie"
             }
 
             favoritos.push(favoritoNuevo)
