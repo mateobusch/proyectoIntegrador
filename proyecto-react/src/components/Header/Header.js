@@ -39,10 +39,10 @@
             <nav>
                 <ul className="nav nav-tabs my-4">
                     <li className   ="nav-item">
-                        <Link to= "/home">Home</Link>
+                        <Link className="nav-link" to= "/home">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to= "/peliculas">Peliculas</Link>
+                        <Link className="nav-link" to= "/peliculas">Peliculas</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to= "/series">Series</Link>

@@ -1,4 +1,20 @@
-/* BUSCADOR */
+
+div{
+    background-image: url(fondo.jpg); ;
+}
+nav{
+    background-color: rgb(21, 11, 65);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.btn-primary{
+    background-color: rgb(21, 11, 65);
+}
+.nav-item{
+    margin-left: 10px;
+    
+}
+
 .search-form,
 .filter-form {
     padding: 10px 0;
@@ -6,6 +22,9 @@
     display: grid;
     grid-template-columns: 5fr 1fr;
     column-gap: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
 }
 
 .filter-form {
@@ -49,12 +68,14 @@
 
 .cardBody {
     margin-top: 10px;
+    padding: 10px;
 }
 
 
 .card-title {
     font-size: 18px;
     margin-bottom: 8px;
+    color: white;
 }
 
 .card-text {
@@ -73,10 +94,50 @@
 
 
 .alert {
-    margin: 20px 0;
+    margin: 20px;
     padding: 10px;
     font-size: 20px;
+    background-color:  rgb(21, 11, 65);
+    color: white
 }
+.alert-primary{
+    background-color:  rgb(21, 11, 65);
+}
+
+.titulo{
+    margin-left: 40%;
+    color: rgb(133, 132, 132)
+}
+.titulo-peliculas{
+    margin-left: 20px;
+    color: white;
+}
+.btn.btn-success.btn-sm{
+    background-color:  rgb(68, 26, 255);
+    margin-bottom: 7px;
+    
+}
+
+.nav-link{
+    margin-left: 1px;
+    margin-right: 1px;
+}
+.nav-link.logout{
+   background-color:  rgb(21, 11, 65);
+   color: white;
+   font-weight: bold;
+}
+p{
+    color: white;
+}
+
+.input-peliculas{
+    margin-left: 20px ;
+}
+label{
+    color:white
+}
+
 
 
 @media (max-width: 768px) {

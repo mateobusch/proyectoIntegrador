@@ -46,8 +46,8 @@ class Series extends Component {
     render() {
         return (
             <div>
-           <h2>Series</h2>
-           <input type='text'
+           <h2 className= "titulo-peliculas">Series</h2>
+           <input className= "input-peliculas" type='text'
            placeholder="Series"
            onChange={(event) => this.filtrarSeries(event.target.value)}
            ></input>

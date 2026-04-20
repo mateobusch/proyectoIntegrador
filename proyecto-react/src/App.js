@@ -17,7 +17,7 @@ import "./styles.css"
 function App() {
   return (
     <React.Fragment>
-      <h1>UdeSA Movies</h1>
+      <h1 className= "titulo">UdeSA Movies</h1>
       <Header />
 
       <Switch>

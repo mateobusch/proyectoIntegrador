@@ -14,10 +14,10 @@ nav {
     list-style: none;
 }
 .nav a{
-    color: #444;
+    color: white;
     text-decoration: none;
 }
-.nav a:hover{
+.nav {
     font-weight: bold;
 }
 .nav-item{
