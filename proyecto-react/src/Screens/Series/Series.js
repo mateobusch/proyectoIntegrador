@@ -51,7 +51,7 @@ class Series extends Component {
            placeholder="Series"
            onChange={(event) => this.filtrarSeries(event.target.value)}
            ></input>
-           <section className= "row cards" id= "movies">
+           <section className= "row cards" id= "series">
             {this.state.cargando ? (
                         <Loader />
                     ) : (

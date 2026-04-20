@@ -70,7 +70,8 @@ class MovieCard extends Component {
                 id: this.props.datos.id,
                 title: this.props.datos.title,
                 poster_path: this.props.datos.poster_path,
-                overview: this.props.datos.overview
+                overview: this.props.datos.overview,
+                queEs: "pelicula"
             }
 
             favoritos.push(favoritoNuevo)
