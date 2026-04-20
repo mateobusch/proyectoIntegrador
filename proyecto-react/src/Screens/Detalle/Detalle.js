@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
 
 class Detalle extends Component {
     constructor(props) {
@@ -13,14 +17,23 @@ class Detalle extends Component {
     componentDidMount() {
         
         const id = this.props.match.params.id;
+        const tipo = this.props.match.params.tipo;
 
-        let usuarioLogueado = localStorage.getItem("usuario");
+        let usuarioLogueado = cookies.get("usuario");
         if (usuarioLogueado !== null) {
             this.setState({ haySesion: true });
         }
 
+        let endpoint= "";
+
+        if (tipo === "serie") {
+            endpoint = `https://api.themoviedb.org/3/tv/${id}?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES`;
+        } else {
+            endpoint = `https://api.themoviedb.org/3/movie/${id}?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES`;
+        }
+
         
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES`)
+        fetch(endpoint)
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -60,7 +73,7 @@ class Detalle extends Component {
                         <p><strong>Género:</strong> {item.genres.map(g => g.name).join(", ")}</p>
                         
                         <hr />
-                        <h4>Sinopsis</h4>
+                        <h4 className="titulo-sinopsis">Sinopsis</h4>
                         <p className="lead">{item.overview || "Sin descripción disponible."}</p>
 
                         
