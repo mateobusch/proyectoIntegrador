@@ -22,6 +22,7 @@ function App() {
 
       <Switch>
         <Route path = "/" exact = {true} component= {Home}/>
+        <Route path = "/home" exact = {true} component= {Home}/>
         <Route path = "/registro" component = {CrearCuenta}/>
         <Route path = "/login" component = {Login}/>
         <Route path = "/peliculas" component = {Peliculas}/>
