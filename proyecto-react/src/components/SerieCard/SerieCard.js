@@ -101,7 +101,7 @@ class SerieCard extends Component {
                         {this.state.verDescripcion ? "Ocultar descripcion" : "Ver descripcion"}
                     </button>
             
-                    <Link to={"/detalle/" + this.props.datos.id} className="btn btn-primary">
+                    <Link to={"/detalle/serie/" + this.props.datos.id} className="btn btn-primary">
                         Ir a detalle
                     </Link>
 

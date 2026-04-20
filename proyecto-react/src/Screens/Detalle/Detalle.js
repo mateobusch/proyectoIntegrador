@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
 
 class Detalle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: null, // Aca vamos a guardar los datos de la API
+            item: null,
             cargando: true,
             haySesion: false
         };
     }
 
     componentDidMount() {
-        // 1. Capturamos el ID de la URL usando las props que nos da React Router
+        
         const id = this.props.match.params.id;
+        const tipo = this.props.match.params.tipo;
 
-        // 2. Verificamos si hay sesión
-        let usuarioLogueado = localStorage.getItem("usuario");
+        let usuarioLogueado = cookies.get("usuario");
         if (usuarioLogueado !== null) {
             this.setState({ haySesion: true });
         }
 
-        // 3. Pedimos los datos específicos a la API
-        // Nota: Use 'movie', pero se podria adaptar para series
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES`)
+        let endpoint= "";
+
+        if (tipo === "serie") {
+            endpoint = `https://api.themoviedb.org/3/tv/${id}?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES`;
+        } else {
+            endpoint = `https://api.themoviedb.org/3/movie/${id}?api_key=4606c83ccea5f9b56977aeac833b6148&language=es-ES`;
+        }
+
+        
+        fetch(endpoint)
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -34,7 +45,7 @@ class Detalle extends Component {
     }
 
     render() {
-        // Si todavía no cargó, mostramos un mensaje para que no rompa
+        
         if (this.state.cargando) {
             return <h2 className="text-center">Cargando detalles...</h2>;
         }
@@ -44,7 +55,7 @@ class Detalle extends Component {
         return (
             <div className="container my-5">
                 <div className="row">
-                    {/* Foto de la portada */}
+                    
                     <div className="col-md-4">
                         <img 
                             src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} 
@@ -53,7 +64,7 @@ class Detalle extends Component {
                         />
                     </div>
 
-                    {/* Información detallada */}
+                    
                     <div className="col-md-8">
                         <h2 className="display-4">{item.title || item.name}</h2>
                         <p className="badge badge-warning p-2">Rating: {item.vote_average}</p>
@@ -62,10 +73,10 @@ class Detalle extends Component {
                         <p><strong>Género:</strong> {item.genres.map(g => g.name).join(", ")}</p>
                         
                         <hr />
-                        <h4>Sinopsis</h4>
+                        <h4 className="titulo-sinopsis">Sinopsis</h4>
                         <p className="lead">{item.overview || "Sin descripción disponible."}</p>
 
-                        {/* Solo mostramos favoritos si existe la sesión */}
+                        
                         {haySesion ? (
                             <button className="btn btn-danger mt-3">
                                 ❤️ Agregar a favoritos

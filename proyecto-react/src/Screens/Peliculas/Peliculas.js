@@ -48,7 +48,7 @@ class Peliculas extends Component {
             <div>
            <h2 className= "titulo-peliculas">Peliculas</h2>
            <input className= "input-peliculas" type='text'
-           placeholder="Pelicula"
+           placeholder="Buscar pelicula"
            onChange={(event) => this.filtrarPeliculas(event.target.value)}
            ></input>
            {this.state.cargando ? <Loader/>
@@ -63,7 +63,7 @@ class Peliculas extends Component {
             }
         </section>
            }
-        <button onClick={() => this.traerPeliculas()}>
+        <button className= "cargar-mas" onClick={() => this.traerPeliculas()}>
             Cargar más
         </button>
         </div>

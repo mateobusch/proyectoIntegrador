@@ -101,7 +101,7 @@ class MovieCard extends Component {
                         {this.state.verDescripcion ? "Ocultar descripcion" : "Ver descripcion"}
                     </button>
             
-                    <Link to={"/detalle/" + this.props.datos.id} className="btn btn-primary">
+                    <Link to={"/detalle/pelicula/" + this.props.datos.id} className="btn btn-primary">
                         Ir a detalle
                     </Link>
 

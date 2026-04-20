@@ -30,6 +30,7 @@ function App() {
         <Route path = "/series" component = {Series}/> 
         <Route path = "/detalle/:id" component = {Detalle}/>
         <Route path="/busqueda/:query" component={Resultados}/>
+        <Route path = "/detalle/:tipo/:id" component = {Detalle} />
         <Route path = "" component = {NotFound}/>
       </Switch>
 

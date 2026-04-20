@@ -48,7 +48,7 @@ class Series extends Component {
             <div>
            <h2 className= "titulo-peliculas">Series</h2>
            <input className= "input-peliculas" type='text'
-           placeholder="Series"
+           placeholder="Buscar serie"
            onChange={(event) => this.filtrarSeries(event.target.value)}
            ></input>
            <section className= "row cards" id= "series">
@@ -67,7 +67,7 @@ class Series extends Component {
             
 
         </section>
-        <button onClick={() => this.traerSeries()}>
+        <button className= "cargar-mas" onClick={() => this.traerSeries()}>
             Cargar más
         </button>
         </div>
