@@ -1,49 +1,41 @@
 import React, { Component } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import Cookies from "universal-cookie"
 
 const cookies = new Cookies()
 
-class MovieCard extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            verDescripcion: false,
-            haySesion: false,
-            esFavorito: false
-        }
-    }
+function MovieCard(props) {
+    const [verDescripcion, setVerDescripcion] = useState(false)
+    const [haySesion, setHaySesion] = useState(false)
+    const [esFavorito, setEsFavorito] = useState(false)
 
-    componentDidMount(){
+    useEffect(() => {
         let usuarioLogeado = cookies.get("usuario")
         let favoritosGuardados = cookies.get("favoritos")
 
         if (usuarioLogeado != null){
-            this.setState({
-                haySesion: true
-            })
+            setHaySesion(true)
         }
 
         if (favoritosGuardados != null){
             let favoritos = favoritosGuardados
 
             for(let i = 0; i < favoritos.length; i++){
-                if(favoritos[i].id === this.props.datos.id){
-                    this.setState({
-                        esFavorito: true
-                    })
+                if(favoritos[i].id === props.datos.id){
+                    setEsFavorito(true)
                 }
             }
         }
+    }, [])
+
+    function mostrarDescripcion(){
+        setVerDescripcion(
+            !verDescripcion
+        )
     }
 
-    mostrarDescripcion(){
-        this.setState({
-            verDescripcion: !this.state.verDescripcion
-        })
-    }
-
-    agregarFavoritos(){
+    function agregarFavoritos(){
         let favoritosGuardados = cookies.get("favoritos")
         let favoritos = []
 
@@ -51,69 +43,63 @@ class MovieCard extends Component {
             favoritos = favoritosGuardados
         }
 
-        if (this.state.esFavorito){
+        if (esFavorito){
             let nuevosFavoritos = []
 
             for(let i = 0; i < favoritos.length; i++){
-                if(favoritos[i].id !== this.props.datos.id){
+                if(favoritos[i].id !== props.datos.id){
                     nuevosFavoritos.push(favoritos[i])
                 }
             }
 
             cookies.set("favoritos", nuevosFavoritos, {path : "/"})
 
-            this.setState({
-                esFavorito: false
-            })
+            setEsFavorito(false)
         } else{
             let favoritoNuevo = {
-                id: this.props.datos.id,
-                title: this.props.datos.title,
-                poster_path: this.props.datos.poster_path,
-                overview: this.props.datos.overview,
+                id: props.datos.id,
+                title: props.datos.title,
+                poster_path: props.datos.poster_path,
+                overview: props.datos.overview,
                 queEs: "pelicula"
             }
 
             favoritos.push(favoritoNuevo)
             cookies.set("favoritos", favoritos, {path : "/"})
 
-            this.setState({
-                esFavorito: true
-            })
+            setEsFavorito(true)
         }
     }
 
-    render() {
-        let imagen = "https://image.tmdb.org/t/p/w500" + this.props.datos.poster_path
+        let imagen = "https://image.tmdb.org/t/p/w500" + props.datos.poster_path
 
         return (
-            <article className={this.props.clase}>
-                <img src={imagen} className="card-img-top" alt={this.props.datos.title} />
+            <article className={props.clase}>
+                <img src={imagen} className="card-img-top" alt={props.datos.title} />
            
                 <div className="cardBody">
-                    <h5 className="card-title">{this.props.datos.title}</h5>
+                    <h5 className="card-title">{props.datos.title}</h5>
 
-                    {this.state.verDescripcion ? 
-                        <p className="card-text">{this.props.datos.overview}</p>
+                    {verDescripcion ? 
+                        <p className="card-text">{props.datos.overview}</p>
                     : null}
                 
-                    <button className="btn btn-primary" onClick={() => this.mostrarDescripcion()}>
-                        {this.state.verDescripcion ? "Ocultar descripcion" : "Ver descripcion"}
+                    <button className="btn btn-primary" onClick={() => mostrarDescripcion()}>
+                        {verDescripcion ? "Ocultar descripcion" : "Ver descripcion"}
                     </button>
             
-                    <Link to={"/detalle/pelicula/" + this.props.datos.id} className="btn btn-primary">
+                    <Link to={"/detalle/pelicula/" + props.datos.id} className="btn btn-primary">
                         Ir a detalle
                     </Link>
 
-                    {this.state.haySesion ?
-                        <button className="btn alert-primary" onClick={() => this.agregarFavoritos()}>
-                            {this.state.esFavorito ? "♥️" : "🩶"}
+                    {haySesion ?
+                        <button className="btn alert-primary" onClick={() => agregarFavoritos()}>
+                            {esFavorito ? "♥️" : "🩶"}
                         </button>
                     : null}
                 </div>
             </article>
         )
     }
-}
 
 export default MovieCard

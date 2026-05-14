@@ -13,8 +13,6 @@ import NotFound from './Screens/NotFound/NotFound'
 import Favoritos from './Screens/Favoritos/Favoritos';
 import "./styles.css"
 
-
-
 function App() {
   return (
     <React.Fragment>
