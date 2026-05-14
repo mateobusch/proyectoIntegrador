@@ -3,36 +3,29 @@
     import {Link} from "react-router-dom"
     import "./styles.css"
     import Cookies from "universal-cookie"
+    import  { useState, useEffect } from 'react'
     
     const cookies = new Cookies()
 
-    class Header extends Component {
-        constructor(props){
-            super(props)
-            this.state = {
-                haySesion: false
-            }
-        }
-        componentDidMount(){
+    function Header(props) {
+        const [haySesion, setHaySesion] = useState("");
+
+        useEffect( () => {
             let usuarioLogeado = cookies.get("usuario");
 
             if (usuarioLogeado){
-                this.setState({
-                    haySesion: true
-                })
+                setHaySesion(true)
             }
-        }
+        },[])
 
-        cerrarSesion(){
+        function cerrarSesion(){
             cookies.remove("usuario", {path : "/"})
             
-            this.setState({
-                haySesion: false
-            })
+            setHaySesion(false)
             
             window.location.reload()
         }
-        render() {
+        
         
         return (
             
@@ -47,25 +40,25 @@
                     <li className="nav-item">
                         <Link className="nav-link" to= "/series">Series</Link>
                     </li>
-                    {this.state.haySesion ?
+                    {haySesion ?
                     <li className="nav-item">
                         <Link className="nav-link" to= "/favoritos">Favoritos</Link>
                     </li>
                     : null}
-                    {!this.state.haySesion ? 
+                    {!haySesion ? 
                     <li className="nav-item ml-auto">
                         <Link className="nav-link" to= "/registro">Registro</Link>
                     </li>
                     : null}
-                    {!this.state.haySesion ?
+                    {!haySesion ?
                     <li className="nav-item">
                     <Link className="nav-link" to= "/login">Login</Link>
                     </li>
                     : null}
 
-                    {this.state.haySesion ?
+                    {haySesion ?
                         <li className="nav-item ml-auto">
-                            <button className= "nav-link logout" onClick={() => this.cerrarSesion()}>
+                            <button className= "nav-link logout" onClick={cerrarSesion}>
                                 Cerrar Sesion
                             </button>
                     </li>
@@ -74,6 +67,6 @@
             </nav>
         )
     }
-    }
+    
 
     export default Header
